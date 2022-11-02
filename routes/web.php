@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\exam\ExamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,5 @@ Route::middleware([
         return view('user.index');
     })->name('dashboard');
 });
+
+route::post('/test_session', [ExamController::class, 'testSession'])->name('testSession');
