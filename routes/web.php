@@ -29,3 +29,4 @@ Route::middleware([
 });
 
 route::post('/test_session', [ExamController::class, 'testSession'])->name('testSession');
+route::get('/finish_session', [ExamController::class, 'finishSession'])->name('finishSession');

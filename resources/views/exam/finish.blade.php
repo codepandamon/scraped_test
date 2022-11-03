@@ -1,4 +1,4 @@
-@extends('admin.admin_master')
+@extends('user.master')
 @section('index')
 <div class="content-wrapper wrapper hold-transition dark-skin sidebar-mini theme-primary">
     <div class="container-full">

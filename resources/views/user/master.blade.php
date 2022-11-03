@@ -22,12 +22,21 @@
     }
     </script>
     <title>Aptitude Test</title>
+    <style>
+    #footer {
+        position: fixed;
+    }
+
+    .resultDisplay {
+        margin-left: 1353px;
+    }
+    </style>
 </head>
 
 <body>
     @include('user.body.header')
     @yield('index')
-    @include('user.body.footer')
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>

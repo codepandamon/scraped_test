@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\exam;
 
 use App\Http\Controllers\Controller;
+use App\Models\Result;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Session;
@@ -46,7 +48,7 @@ class ExamController extends Controller
             }
         }
 
-        if ($question_count < 10) {
+        if ($question_count < 3) {
             $page = Http::get('https://practice-questions.wizako.com/gre/');
 
             $crawler = new Crawler($page);
@@ -175,11 +177,30 @@ class ExamController extends Controller
                 $results++;
             }
         }
+
         session()->forget('all_questions');
         session()->forget('question_count');
         $request->session()->put('results', $results);
+        $result_1 = new Result();
+        $result_1->user_name = Auth::user()->name;
+        $result_1->result = $results;
+        $result_1->save();
 
-        return view('admin.exam_view.finish');
+        return view('exam.finish');
+
+    }
+    public function finishSession()
+    {
+        session()->forget('all_questions');
+        session()->forget('question_count');
+        $results = session::get('results');
+
+        $result_1 = new Result();
+        $result_1->user_name = Auth::user()->name;
+        $result_1->result = $results;
+        $result_1->save();
+
+        return view('exam.finish');
 
     }
 }
